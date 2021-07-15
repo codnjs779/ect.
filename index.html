@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser 좌표</title>
+    <style>
+        /* 화면을 벗어나는 곳으로 스크롤을 하지 못하게 막는 것 ! 
+        body{
+            overflow:hidden;
+        }
+        */
+        div{
+            width:100px;
+            height:100px;
+            margin-bottom: 10px;
+            background-color:aquamarine;
+            
+        }
+        .special{
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class='special'></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        /*
+        //알고자 하는것 -> client 의 xy 좌표, page일때 xy좌표
+        
+        const special = document.querySelector('.special');
+       /* getBoundingClientRect가 있기 때문에 이것은 필요가 없는 코드
+        const pageX = window.scrollX;
+        const pageY = window.scrollY;
+        
+        // 클릭이 되면 우리가 등록한 함수가 호출이 되도록 한것 클릭을 누르면 발생하는 이벤트()
+        special.addEventListener('click', event => {
+           const rect = special.getBoundingClientRect();// 이 함수는 client와 page 둘다 알 수 있는 dom이기 때문에 따로 스크롤 값을 불러와줄 필요가 없다!(내가 기존에 썼던 코드는 이것을 몰라서 client, page를 다 따로 선언해서 가지고 옴)
+           console.log(rect);
+           console.log(`client: ${rect.X}, ${rect.Y}`);// client는 지금 보이는 화면에서 가장 위에서부터 시작한 거리 
+           console.log(`page: + ${page.X}, ${page.Y}`);// page는 페이지의 가장 상단에서 부터 시작한 거리 
+        
+        });
+
+        // 위 코드는 오작동 why?
+        //arrow function 의 개념의 잘 이해하지 못하겠음 
+        */
+
+        const special = document.querySelector('.special');
+
+        special.addEventListener('click', (event) => { //원래 arrow function이 아니면,  function(){ } 이런식으로 내용이 진행되었을 것. 하지만 arrowfunction을 사용해서 이와 같은 형태
+           const rect = special.getBoundingClientRect(); //위치를 알 수 있는 함수
+           console.log(rect);  
+           console.log(`client: ${event.clientX}, ${event.clientY}`); //클릭 이벤트가 발생할 때마다 clientX,Y의 값이 콘솔창에 띄워짐
+           console.log(`page: ${event.pageX}, ${event.pageY}`);// 클릭 이벤트가 발생할 때마다 pageXY의 값이 콘솔창에 띄워짐 
+        });
+
+        // 의문점! 클릭이벤트가 발생할때마다 실행되는 함수? argument?가 뭔가.,,?? getBoundingClientRect 이게 맞는건지 아닌지! 맞다면 getBoundingClientRect() 괄호안에
+        //event를 쓰지 않아도 왜 잘 작동하는지? 
+        // 답: 이벤트가 클릭이 되면, 클릭이벤트는 event오브젝트가 등록한 콜백 함수에 전달이 됨
+        
+        // 콜백 함수의 개념이 확 와닿지가 않아서 추가 공부필요! 내일 공부=> 콜백함수 
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window_size</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+ <script>
+     let body = document.querySelector('body');
+    // body는 html file에 있는<body>를 가르킴
+     function sizeUpdate(){
+         /*innerHTML & innerText 차이점 innerHTML은 가져온 텍스트에 포함된 태그를 인식하여 태그를 적용시킨 후 문자를 보여줍니다.
+           innerText는 가져온 텍스트에 포함된 태그도 하나의 텍스트로 인식하여 보여줍니다.*/
+     body.innerHTML = `  
+     window.screen:${window.screen.height} ${window.screen.width} <br/>
+     window.outer: ${window.outerHeight} ${window.outerWidth} <br/>
+     window.inner: ${window.innerHeight} ${window.innerWidth} <br/>
+     documentElement.clientWidth: ${document.documentElement.clientHeight} ${document.documentElement.clientWidth}
+     `
+     };
+     //window에 eventlistener를 등록해서 새로 사이즈 변경 될때마다 콜백 함수 호출,
+     //콜백 함수 안에서는 업데이트 함수 호출 
+     window.addEventListener('resize', () => {
+         sizeUpdate();
+         console.log('update size!')
+     });
+     
+     sizeUpdate(); // 페이지 로딩되면 가장 먼저 실행되는 것 
+   
+ </script>
+</html>
