@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser 좌표</title>
+    <style>
+        /* 화면을 벗어나는 곳으로 스크롤을 하지 못하게 막는 것 ! 
+        body{
+            overflow:hidden;
+        }
+        */
+        div{
+            width:100px;
+            height:100px;
+            margin-bottom: 10px;
+            background-color:aquamarine;
+            
+        }
+        .special{
+            background-color:red;
+        }
+        .buttonContainer{
+            position: fixed;
+            display: flex;
+            margin-left: 300px;
+        }
+        button{
+            margin-right:5px;
+        }
+    </style>
+</head>
+<body>
+    <p class='buttonContainer'>
+    <button class='moveone'>100px씩 이동</button>
+    <button class='movetwo'>100px로이동</button>
+    <button class='movethree'>special box</button>
+    </p>
+
+    <div class='boxContainer'>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class='special'></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+    <script>
+     const moveOne = document.querySelector('.moveone');
+     const moveTwo = document.querySelector('.movetwo');
+     const moveThree = document.querySelector('.movethree'); 
+     const special = document.querySelector('.special');      
+     
+     //콘솔창에 위치 표시하기
+     special.addEventListener('click', (event) => { //원래 arrow function이 아니면,  function(){ } 이런식으로 내용이 진행되었을 것. 하지만 arrowfunction을 사용해서 이와 같은 형태
+           const rect = special.getBoundingClientRect(); //위치를 알 수 있는 함수
+           console.log(rect);  
+           console.log(`client: ${event.clientX}, ${event.clientY}`); //클릭 이벤트가 발생할 때마다 clientX,Y의 값이 콘솔창에 띄워짐
+           console.log(`page: ${event.pageX}, ${event.pageY}`);// 클릭 이벤트가 발생할 때마다 pageXY의 값이 콘솔창에 띄워짐 
+        });
+
+
+        // 100씩 이동
+     moveOne.addEventListener('click', () => {
+         window.scrollBy({ top: 100, left: 0, behavior:'smooth'});
+     });
+    //100으로 이동 
+     moveTwo.addEventListener('click', () => {
+         window.scrollTo(0,100);
+     });
+     //스페셜로 이동 
+     moveThree.addEventListener('click', () => {
+        special.scrollIntoView();
+     });
+     // 돔콘텐츠, 로드
+
+     
+     window.addEventListener("load", function(event) {
+    console.log("All resources finished loading!");
+  });
+     
+     window.addEventListener('DOMContentLoaded',(event) => {
+         console.log('DOM full loaded and parsed');
+     })
+// DOMContent는 HTML문서에 있는 것들만 호출되면 표시 
+//load는 문서내에 있는 소스, 폰트, 이미지 등등을 모두 호출 한 후에 표시
+//페이지 내부에 리소스가 많을 때 DOMContent가 빨리 출력 되고 로드는 좀 나중에 출력 됨 
+//이런점에서 defer가 유용하다! 
+
+    </script>
+</body>
+</html>
