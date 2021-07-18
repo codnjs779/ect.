@@ -21,4 +21,6 @@ function mouseFunc(event) {
 window.addEventListener('load' , () => {
     html.addEventListener('mouseover', mouseFunc);
 });
+//d아직 defer 문제 해결하지 못함!! 내일 해결하고 다시 커밋 
+
 
