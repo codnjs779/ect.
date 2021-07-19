@@ -1,0 +1,14 @@
+@import 'reset.css';
+
+.mountain{
+    width:500px;
+    background-image: url(img/sunny.jpg);
+    
+}
+
+i{
+    font-size:30px;
+    margin-left: 10px;
+    position:absolute;
+    top:100px;
+}
