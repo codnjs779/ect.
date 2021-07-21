@@ -3,33 +3,38 @@
     --main-color:#d5f2c7;
 }
 
+
 .Box{
     border: 1px solid;
-    width: 300px;
-    height: 500px;
+    width:70%;
+    height: 100%;
     transform: translate(50px, 50px);
     background-color:rgb(255, 255, 255) ;
 }
 
-.shoppingList, ul, form{
+.shoppingList{
     display:flex;
     justify-content: center;
-}
-
-.shoppingList{
     font-size: 25px;;
     padding:15px;
     font-weight: bold;
     background-color: var(--main-color);
 }
 
-form{
-    transform: translateY(350px);
+li{
+  
+    padding: 10px 0px;
+    margin-bottom:3px;
+    list-style:inside;
+   
 }
 
-input{
-    margin-right: 15px;
+form{
+    margin-bottom: 5px;
+    text-align: center;
+    
 }
+
 input:focus{
     background-color:var(--main-color);
 }
