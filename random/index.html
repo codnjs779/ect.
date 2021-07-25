@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Number guessing game</h1>
+    <div>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</div>
+
+    <form action="" class='numform' onSubmit="return false" >
+        <div>Enter a guess:</div>
+            <input type="text" class='userinput'>
+            <input type="submit" value="입력" class='enterbtn'>
+       
+    </form>
+
+    <div class='resultinfo'>
+        <p class ='previous'></p>
+        <p class ='result'></p>
+        <p class ='rangesolution'></p>
+    </div>
+
+    <script>
+        let randomNum = Math.floor(Math.random() * 100) + 1;
+        
+        const numform = document.querySelector('.numform');
+        const userinput = document.querySelector('.userinput');
+        const enterbtn = document.querySelector('.enterbtn');
+
+        const previous = document.querySelector('.previous');
+        const result = document.querySelector('.result');
+        const rangesolution = document.querySelector('.rangesolution');
+        
+        let userCount = 1;
+        let resetBtn;
+
+      
+//input
+        function numberSet(){
+         const userGuess = Number(userinput.value);
+          if(userCount === 1){
+            previous.textContent = 'Previous number: ';
+        }   previous.textContent += userGuess + ' ';
+        
+         if(userGuess === randomNum){
+             result.textContent = 'you win!'
+             result.style.backgroundColor ='green';
+             setGame();
+              
+        } else if(userCount === 10) {
+            result.textContent = 'Game over'
+            result.style.backgroundColor ='pink'; 
+            setGame();
+        }
+         else {
+            result.textContent = 'wrong!'
+            result.style.backgroundColor = 'red';
+         if (userGuess > randomNum){
+           rangesolution.textContent = 'Last guess was too high'
+        } if(userGuess < randomNum){
+            rangesolution.textContent = 'Last guess was too low'
+        }
+    }
+
+    userCount++;
+    userinput.value = ' ';
+    numform.focus();
+}
+numform.addEventListener('submit' , numberSet);
+
+//reset btn create  & input disable
+
+function setGame(){
+    resetBtn = document.createElement('button');
+    resetBtn.textContent = 'reset';
+    document.body.appendChild(resetBtn);
+    resetBtn.addEventListener('click', actionReset);
+    userinput.disabled = true;
+    enterbtn.disabled = true;
+    
+}
+
+// reset action
+function actionReset(){
+    userCount = 1;
+
+    const resultinfo = document.querySelectorAll('.resultinfo p');
+    for (let i = 0; i < resultinfo.length; i++) {
+        resultinfo[i].textContent = '';
+    }
+
+    resetBtn.parentNode.removeChild(resetBtn);
+
+    userinput.disabled = false;
+    enterbtn.disabled = false;
+    numform.value = '';
+    numform.focus();
+
+
+    result.style.backgroundColor = 'white';
+    randomNum = Math.floor(Math.random() * 100) + 1;
+}
+
+</script>
+</body>
+</html>
