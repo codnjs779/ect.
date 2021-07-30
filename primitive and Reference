@@ -1,0 +1,100 @@
+#TIL 이론(원시/참조 타입)
+🚨primitive type
+
+원시값의 종류로는  string, number, bigint, boolean, undefined, symbol,null이 존재함.
+원시값은 절대 변형할 수 없다. 원시값과 원시값을 덮은 변수를 구분해야한다.
+변수는 새로운 값을 다시 할당할 수 있지만, 이미 생성한 원시값은 변형할 수 없다.
+
+let string = 'hello';
+console.log(string);
+//hello
+string.toUpperCase();
+console.log(string);
+//hello
+
+변수 string은 원시값으로 문자열 hello를 선언했고 sting에 함수 toUpperCase()를 적용한 후 
+다시 string을 콘솔창에 띄워보면, 값이 그대로 인것을 알 수 있다. 이는 원시값이 변하지 않는다는 의미이다. 
+
+그렇다면 toUpperCase를 적용시키려면 어떻게 해야할까?
+
+let string = 'hello';
+console.log(string);
+//hello
+
+string = string.toUpperCase();
+console.log(string);
+//HELLO
+
+sting을 재선언 해주고 그 이후에 함수를 적용시켜주면 원하는 값인 HELLO가 출력되는걸 볼 수 있다.
+이걸 보면 겉으로는 sting의 원시값이 변경된것처럼 보이지만 사실은 그렇지 않다.
+string의 원시값이 변경된것이 아니라 원시값에 새로운 값을 부여해준것 뿐이다. 원래의 원시값hello에 HELLO라는 포장지를 덮어둔 것과 같다. 포장을 까보면 내용물은같다.
+
+
+함수표현식의 경우,
+
+let age = 50;
+
+function addNumber(num){
+  num += 3;
+}
+addNumber(age);
+console.log(age);
+
+num에인자를 age 로 줬기 때문에 값이 53으로 나올 것을 기대해 볼 수 있지만, 출력값은 50이다. 
+이 결과를 보면 원시값은 변하지 않았다는걸 또 알 수 있다. 그럼 어떤것에 영향을 준 것일까? num인자에 영향을 준것
+
+let age = 50;
+
+function addNumber(num){
+  num += 3;
+  console.log(num); //53
+}
+addNumber(age);
+console.log(age);//50
+
+num을 콘솔에 띄워보면 53이 된것을 알 수 있다. num에 age값인 50을 할당하고, 함수 addNumber을 실행하면, 함수의 인자인 num이 바뀐걸 확인 할 수있다. 원시값은 불변!
+
+또한, 원시값은 null , undefined를 제외하고 모든 원시 값을 래핑한 객체를 갖는다.
+
+let num = 20;
+String(num);
+//"20"
+String은 숫자 type인 num을 문자열로 반환했다. 이는 진짜 타입이 바뀐걸까? 아니다. 
+
+let num = 20;
+String(num);
+console.log(num);
+console.log(typeof num);
+//20
+//number
+
+이처럼 num은 String으로 래핑 되어도 원시값의 타입은 number이다.
+
+primitive type은 원시값을 복사해 로컬 복사본을 생성한다.
+모든 변경들은 복사본으로 작업되기 때무에 원시값에 영향을 주지 않는다. 이것이 원시값이 변하지 않는 이유 
+
+🚨Reference Type
+
+Reference type은 값을 바로 저장하지 않는다. 대신, 값이 저장되는 주소를 저장한다.
+즉, 개체에 대한 주조(참조)는 보유 하지만, 개체 자체는 보유하지 않는다는 의미. 주소를 할당하기 때문에 데이터가
+복사 되지 않는다. 
+
+string s = "hello";
+문자열 변수를 선언하면, 시스템은 메모리에서 변수 s를 위한 랜덤 위치를 선정한다. 
+이것은 실제 데이터값의 주소이다. (데이터값 자체가 아님)
+
+Reference type의 종류는 
+string, arrays, class, delegate가 있다.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
